@@ -1,132 +1,61 @@
-# End-to-end-Medical-Chatbot-Generative-AI
+# End-to-End Medical Chatbot using Generative AI (RAG)
 
+## 📌 Project Overview
+This project presents an end-to-end medical chatbot designed to provide preliminary healthcare information using modern Natural Language Processing techniques. The system combines document-based semantic retrieval with generative language models to deliver context-aware, reliable, and safe medical responses. It is intended for educational and research purposes only and does not replace professional medical consultation.
 
-# How to run?
-### STEPS:
+---
 
-Clone the repository
+## 🎯 Problem Statement
+Traditional medical chatbots either rely on rigid rule-based systems or unrestricted generative models. Rule-based systems lack scalability and flexibility, while generative models may produce hallucinated or unsafe medical information. This project addresses the need for a document-grounded, reliable medical chatbot that balances accuracy, safety, and scalability.
 
-```bash
-Project repo: https://github.com/
-```
-### STEP 01- Create a conda environment after opening the repository
+---
 
-```bash
-conda create -n medibot python=3.10 -y
-```
+## 🧠 Proposed Solution
+The chatbot follows a **Retrieval-Augmented Generation (RAG)** architecture:
+- Relevant medical documents are retrieved using semantic similarity.
+- Retrieved context is passed to a language model for grounded response generation.
+- This approach minimizes hallucinations and improves factual consistency.
 
-```bash
-conda activate medibot
-```
+---
 
+## 🏗️ System Architecture
+1. **Document Ingestion** – Medical PDF documents are loaded and processed.
+2. **Text Chunking** – Documents are split into smaller semantic chunks.
+3. **Embedding Generation** – Sentence-transformer embeddings are generated.
+4. **Vector Storage** – Embeddings are stored in a vector database.
+5. **Query Processing** – User query is converted into embeddings.
+6. **Semantic Retrieval** – Top-k relevant chunks are retrieved.
+7. **Response Generation** – A generative AI model produces a context-aware response.
 
-### STEP 02- install the requirements
-```bash
-pip install -r requirements.txt
-```
+---
 
+## 🛠️ Technologies Used
+- **Python**
+- **Flask** – Web framework
+- **LangChain** – LLM orchestration
+- **Pinecone** – Vector database
+- **HuggingFace Sentence Transformers** – Embedding model
+- **OpenAI GPT-3.5 Turbo** – Generative language model
+- **HTML / CSS** – User Interface
 
-### Create a `.env` file in the root directory and add your Pinecone & openai credentials as follows:
+---
 
-```ini
-PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-OPENAI_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+## 📊 Evaluation Metrics
+The system was evaluated based on:
+- Response relevance
+- Retrieval accuracy
+- Response latency
+- Task completion rate
+- User satisfaction (qualitative)
 
+The document-grounded approach demonstrated improved reliability compared to standalone generative responses.
 
-```bash
-# run the following command to store embeddings to pinecone
-python store_index.py
-```
+---
 
-```bash
-# Finally run the following command
-python app.py
-```
+## ⚠️ Ethical Considerations
+- The chatbot does **not provide medical diagnosis or prescriptions**.
+- Emergency-related queries are handled conservatively.
+- Users are advised to consult certified healthcare professionals.
+- The system is intended strictly for educational and research use.
 
-Now,
-```bash
-open up localhost:
-```
-
-
-### Techstack Used:
-
-- Python
-- LangChain
-- Flask
-- GPT
-- Pinecone
-
-
-# AWS-CICD-Deployment-with-Github-Actions
-
-## 1. Login to AWS console.
-
-## 2. Create IAM user for deployment
-
-	#with specific access
-
-	1. EC2 access : It is virtual machine
-
-	2. ECR: Elastic Container registry to save your docker image in aws
-
-
-	#Description: About the deployment
-
-	1. Build docker image of the source code
-
-	2. Push your docker image to ECR
-
-	3. Launch Your EC2 
-
-	4. Pull Your image from ECR in EC2
-
-	5. Lauch your docker image in EC2
-
-	#Policy:
-
-	1. AmazonEC2ContainerRegistryFullAccess
-
-	2. AmazonEC2FullAccess
-
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 970547337635.dkr.ecr.ap-south-1.amazonaws.com/medicalchatbot
-
-	
-## 4. Create EC2 machine (Ubuntu) 
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-   - AWS_ACCESS_KEY_ID
-   - AWS_SECRET_ACCESS_KEY
-   - AWS_DEFAULT_REGION
-   - ECR_REPO
-   - PINECONE_API_KEY
-   - OPENAI_API_KEY
-
-    
+---
