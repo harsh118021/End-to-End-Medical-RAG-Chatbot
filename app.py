@@ -44,10 +44,10 @@ def get_rag_chain():
     )
 
     llm = ChatOpenAI(
-        model="gpt-3.5-turbo",
-        temperature=0.4,
-        max_tokens=200,
-        api_key=openai_api_key
+    model="gpt-4.1-mini",
+    temperature=0.4,
+    max_tokens=300,
+    api_key=openai_api_key
     )
 
     prompt = ChatPromptTemplate.from_messages([
